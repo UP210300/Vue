@@ -1,0 +1,29 @@
+<script setup>
+  //defineProps(['title', 'id', 'body'])
+  defineProps({
+    title: String,
+    id: Number,
+    body: {
+      type:String,
+      default: 'no description',
+    }
+  })
+
+</script>
+
+<template>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        {{ id }} - {{ title }}
+      </h5>
+      <p>{{ body }}</p>
+      <button>Favorite</button>
+    </div>
+  </div>
+
+</template>
+<style scoped>
+
+</style>
