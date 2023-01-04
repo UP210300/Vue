@@ -9,6 +9,8 @@
     }
   })
 
+  const emit = defineEmits('changeFavorite')
+
 </script>
 
 <template>
@@ -19,7 +21,11 @@
         {{ id }} - {{ title }}
       </h5>
       <p>{{ body }}</p>
-      <button>Favorite</button>
+      <button
+          @click="emit('changeFavorite', title)"
+          class="btn btn-outline-primary">
+        Favorite
+      </button>
     </div>
   </div>
 

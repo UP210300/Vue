@@ -1,18 +1,33 @@
 <script setup>
 
-import BlogPost from './components/BlogPost.vue';
 import { ref } from 'vue';
+import PostPagination from "./components/PostPagination.vue";
+import BlogPost from './components/BlogPost.vue';
 
-const posts = ref([
-  {title:"Post 1", id:"1", body:"description"},
-  {title:"Post 2", id:"2", body:"description"},
-  {title:"Post 3", id:"3", body:"description"},
-  {title:"Post 4", id:"4", body:"description"},
-]);
-const favorite = ref('')
-const changeFavorite = (post) => {
-  favorite.value = post;
+
+const posts = ref([]);
+const postPerPage = 10;
+const start=ref(0);
+const end=ref(postPerPage);
+
+const favorite = ref('');
+
+const changeFavorite = (title) => {
+  favorite.value = title;
 };
+const next = () => {
+  start.value = start.value + postPerPage
+  end.value = end.value + postPerPage
+}
+const previous = () => {
+  //start.value += - postPerPage
+  start.value = start.value - postPerPage
+  end.value = end.value - postPerPage
+}
+
+fetch('https://jsonplaceholder.typicode.com/posts')
+    .then( (res) => res.json() )
+    .then( (data) => posts.value = data )
 
 </script>
 
@@ -22,13 +37,30 @@ const changeFavorite = (post) => {
     <div class="text-center">
       <h1>APP</h1>
     </div>
-    <h2>My favorite post:</h2>
+    <h2>My favorite post: {{ favorite }} </h2>
+
+    <!--<button @click="next">Next test</button>
+    <button @click="previous">Previous test</button> -->
+
+    <PostPagination
+        @changeNext = "next"
+        @changePrevious = "previous"
+        :start="start"
+        :end="end"
+        :maxLength="posts.length"
+        class="mb-2"
+    />
+
     <BlogPost
-        v-for="post in posts"
+        v-for="post in posts.slice(start,end)"
         :key="post.id"
         :title="post.title"
         :id="post.id"
-        :body="post.body"/>
+        :body="post.body"
+        class="mb-2"
+        @changeFavorite = "changeFavorite"
+    />
+
   </div>
 
 </template>
