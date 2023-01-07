@@ -1,8 +1,8 @@
 <script setup>
 
-import axios from "axios";
 import {useRoute,useRouter} from "vue-router";
 import {ref} from "vue";
+import {useGetData} from "@/composables/getData";
 
 const route = useRoute();
 const router = useRouter();
@@ -12,28 +12,31 @@ const back = () => {
   router.push('/pokemon')
 }
 
-const getData = async() => {
-  try {
-    const {data} = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${route.params.name}`
-    );
-    console.log(data);
-    poke.value = data;
-  }catch (error){
-    console.log(error);
-  }
-}
+const {data,getData,loading,error} = useGetData()
 
-getData();
+getData(`https://pokeapi.co/api/v2/pokemon/${route.params.name}`);
 
 </script>
 
 <template>
 
+<main>
+  <p v-if="loading">Loading info ...</p>
+  <div class="alert alert-danger mt-2" v-if="error">Pokemon not found</div>
+  <div v-if="data">
 
-  <h2 class="mt-5">Pokemon name: {{ $route.params.name }}</h2>
-  <img :src="poke.sprites?.front_default" alt="">
-  <button @click="back" >Back</button>
+    <h1 class="d-flex justify-content-center mt-5">Pokemon name: {{ $route.params.name }}</h1>
+    <img :src="data.sprites?.front_default" alt="">
+
+  </div>
+
+  <button class="d-flex justify-content-center"
+          @click="back" >
+    Back
+  </button>
+
+</main>
+
 
 </template>
 

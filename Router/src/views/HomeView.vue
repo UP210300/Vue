@@ -1,9 +1,11 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+
+  <div class="d-flex justify-content-center">
+    <h1>Welcome to the pokemon app</h1>
+  </div>
+
 </template>
