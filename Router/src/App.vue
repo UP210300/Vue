@@ -13,20 +13,22 @@ import { RouterLink, RouterView } from 'vue-router'
       </router-link>
       <div>
         <router-link
-            class="btn btn-outline-primary"
+            class="btn btn-outline-primary me-2"
             to="/">
           Home
         </router-link>
         <router-link
-            class="btn btn-outline-primary me-2"
+            class="btn btn-outline-primary"
             to="/pokemon">
           Pokemon
         </router-link>
       </div>
     </div>
   </nav>
-
+<div class="container text-center">
   <RouterView />
+</div>
+
 </template>
 
 
