@@ -3,10 +3,13 @@
 import {useRoute,useRouter} from "vue-router";
 import {ref} from "vue";
 import {useGetData} from "@/composables/getData";
+import {useFavoritesStore} from "@/store/favorites";
 
 const route = useRoute();
 const router = useRouter();
 const poke = ref({});
+const useFavorites = useFavoritesStore();
+const {add} = useFavorites;
 
 const back = () => {
   router.push('/pokemon')
@@ -36,7 +39,7 @@ getData(`https://pokeapi.co/api/v2/pokemon/${route.params.name}`);
     Back
   </button>
   <button
-      class="btn btn-outline-primary mt-2">
+      class="btn btn-outline-primary mt-2" @click="add(data)">
     Add to favorites
   </button>
 
