@@ -29,14 +29,20 @@ getData(`https://pokeapi.co/api/v2/pokemon/${route.params.name}`);
     <img :src="data.sprites?.front_default" alt="">
 
   </div>
+<div class="d-flex justify-content-around">
 
-  <button class="d-flex justify-content-center"
+  <button class="btn btn-outline-primary"
           @click="back" >
     Back
   </button>
+  <button
+      class="btn btn-outline-primary mt-2">
+    Add to favorites
+  </button>
+
+</div>
 
 </main>
-
 
 </template>
 
