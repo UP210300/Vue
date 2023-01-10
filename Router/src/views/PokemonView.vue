@@ -37,7 +37,6 @@ getData('https://pokeapi.co/api/v2/pokemon/');
         Next
       </button>
     </div>
-
   </div>
 
 </template>
