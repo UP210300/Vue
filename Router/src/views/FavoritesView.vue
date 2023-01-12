@@ -26,7 +26,8 @@ const router = useRouter();
           </button>
         </div>
         <div class=" d-inline d-flex flex-row">
-          <router-link class="btn small btn-success "
+          <router-link
+              class="btn small btn-success "
           :to="`/pokemon/${poke.name}`">
             More info
           </router-link>
