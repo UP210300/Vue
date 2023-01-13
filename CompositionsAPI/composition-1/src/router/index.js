@@ -16,6 +16,17 @@ const routes = [
     path: '/counter',
     name: 'counter',
     component: () => import(/* webpackChunkName: "about" */ '../views/Counter.vue')
+  },
+  {
+    path: '/countries',
+    name: 'countries',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Countries.vue')
+  },
+  {
+    path: '/countries/:name',
+    name: 'country',
+    props: true,
+    component: () => import(/* webpackChunkName: "about" */ '../views/Country.vue')
   }
 ]
 
