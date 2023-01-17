@@ -3,7 +3,7 @@
   <div class="card body">
     <h5 class="text-center">{{country.name.common}}</h5>
     <p class="text-center">
-      <img :src="country.flag" alt="${country.name.common}-flag" class="img-fluid w-50">
+      <img :src="country.flags" alt="{country.name.common}-flag" class="img-fluid w-50">
     </p>
     <div class="card-text">
       <span class="badge bg-dark d-block mb-1">Official name: {{country.name.official}}</span>
