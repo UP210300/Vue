@@ -11,9 +11,9 @@
 
 <script>
 
-import {useStore} from 'vuex';
-import {computed, onMounted} from "vue";
 import Card from "@/components/Card";
+import {computed, onMounted} from "vue";
+import {useStore} from 'vuex';
 
 export default {
   components: {Card},
@@ -25,8 +25,9 @@ export default {
       return store.getters.topCountriesPopulation
     })
 
-    onMounted(() => {
-      store.dispatch('getCountries')
+    onMounted( async () => {
+      await store.dispatch('getCountries')
+      await store.dispatch('filterRegion','Americas')
     })
 
     return{countries}

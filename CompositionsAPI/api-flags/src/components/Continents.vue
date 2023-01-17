@@ -2,23 +2,28 @@
   <div class="text-center">
     <h3 >Filter by continents</h3>
     <div class="btn-group mb-4">
-      <button class="btn btn-dark">AM</button>
-      <button class="btn btn-dark">EU</button>
-      <button class="btn btn-dark">AS</button>
-      <button class="btn btn-dark">OC</button>
-      <button class="btn btn-dark">AN</button>
-      <button class="btn btn-dark">ALL</button>
+      <button class="btn btn-dark" @click="filter('Americas')">AM</button>
+      <button class="btn btn-dark" @click="filter('Europe')">EU</button>
+      <button class="btn btn-dark" @click="filter('Asia')">AS</button>
+      <button class="btn btn-dark" @click="filter('Oceania')">OC</button>
+      <button class="btn btn-dark" @click="filter('Africa')">AF</button>
+      <button class="btn btn-dark" @click="filter('')">ALL</button>
     </div>
   </div>
 
 </template>
 
 <script>
+import {useStore} from "vuex";
+
 export default {
-  name: "Continents"
+  setup(){
+    const store = useStore()
+    const filter = (region) => {
+      store.dispatch('filterRegion',region)
+    }
+    return{filter}
+  }
 }
 </script>
 
-<style scoped>
-
-</style>
